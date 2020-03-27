@@ -19,5 +19,14 @@
   },
   "devDependencies": {
     "nodemon": "^2.0.2"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jcapchasalas/backend-sigescom.git"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/jcapchasalas/backend-sigescom/issues"
+  },
+  "homepage": "https://github.com/jcapchasalas/backend-sigescom#readme"
 }

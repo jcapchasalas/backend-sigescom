@@ -1,6 +1,6 @@
 var express = require('express');
-var bcrypt = require('bcryptjs');
-var jwt = require('jsonwebtoken');
+var bcrypt = require('bcryptjs'); // para encriptar
+var jwt = require('jsonwebtoken'); // para crear toen
 
 var SEED = require('../config/config').SEED;
 

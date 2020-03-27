@@ -8,7 +8,7 @@ var bodyParser = require('body-parser');
 var app = express();
 
 
-// Body Parse
+// Configurar body parse
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
@@ -18,6 +18,9 @@ app.use(bodyParser.json())
 var appRoutes = require('./routes/app');
 var usuarioRoutes = require('./routes/usuario');
 var loginRoutes = require('./routes/login');
+var hospitalRoutes = require('./routes/hospital');
+var medicoRoutes = require('./routes/medico');
+
 
 // Conexion a la Base de Datos mongoDB
 mongoose.connection.openUri('mongodb://localhost:27017/sigescomDB', (err, res) => {
@@ -29,6 +32,8 @@ mongoose.connection.openUri('mongodb://localhost:27017/sigescomDB', (err, res) =
 
 // Rutas
 app.use('/usuario', usuarioRoutes);
+app.use('/hospital', hospitalRoutes);
+app.use('/medico', medicoRoutes);
 app.use('/login', loginRoutes);
 app.use('/', appRoutes);
 
