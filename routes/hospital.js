@@ -12,9 +12,13 @@ var Hospital = require('../models/Hospital');
 
 app.get('/', (req, res, next) => {
 
-    Hospital.find({})
+    var desde = req.query.desde || 0;
+    desde = Number(desde);
 
-    .populate('usuario', 'nombre email')
+    Hospital.find({})
+        .skip(desde)
+        .limit(5)
+        .populate('usuario', 'nombre email')
         .exec(
             (err, hospitales) => {
 
@@ -26,10 +30,15 @@ app.get('/', (req, res, next) => {
                     });
                 }
 
-                res.status(200).json({
-                    ok: true,
-                    hospitales: hospitales
-                });
+                Hospital.estimatedDocumentCount({}, (err, conteo) => {
+
+                    res.status(200).json({
+                        ok: true,
+                        hospitales: hospitales,
+                        total: conteo
+                    });
+                })
+
             });
 });
 

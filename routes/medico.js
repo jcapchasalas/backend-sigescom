@@ -12,29 +12,35 @@ var Medico = require('../models/Medico');
 
 app.get('/', (req, res, next) => {
 
-    Medico.find().populate([{
-        path: 'usuario',
-        model: 'Usuario'
-    }, {
-        path: 'hospital',
-        model: 'Hospital'
-    }]).exec(function(err, medicos) {
+    var desde = req.query.desde || 0;
+    desde = Number(desde);
 
-        if (err) {
-            return res.status(500).json({
-                ok: false,
-                mensaje: 'Error Cargando Medicos',
-                errors: err
+    Medico.find({})
+        .skip(desde)
+        .limit(5)
+        .populate('usuario')
+        .populate('hospital')
+        .exec(
+            (err, medicos) => {
+
+                if (err) {
+                    return res.status(500).json({
+                        ok: false,
+                        mensaje: 'Error Cargando Medicos',
+                        errors: err
+                    });
+                }
+
+                Medico.estimatedDocumentCount({}, (err, conteo) => {
+                    res.status(200).json({
+                        ok: true,
+                        medicos: medicos,
+                        total: conteo
+                    });
+                })
+
             });
-        }
-
-        res.status(200).json({
-            ok: true,
-            medicos: medicos
-        });
-    });
 });
-
 
 //=================================================================
 // ACTUALIZAR HOSPITAL 
