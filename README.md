@@ -127,6 +127,35 @@ Instalacion:
 npm install jsonwebtoken --save
 ```
 
+### express-fileupload (127)
+Subir imagenes
+
+**URL:**
+`https://github.com/richardgirges/express-fileupload/`
+
+
+Instalacion:
+```bash
+npm i express-fileupload --save
+npm uninstall --save express-fileupload
+
+
+npm install --save express-fileupload@1.0.0
+
+
+```
+
+### serve-index (132)
+
+
+**URL:**
+`https://github.com/expressjs/serve-index`
+
+
+Instalacion:
+```bash
+npm install serve-index --save
+```
 
 
 
